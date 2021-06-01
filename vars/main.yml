@@ -1,0 +1,6 @@
+---
+dir_path: []
+
+# dir_vars
+path_localhost: "{{dir_path}}"
+path_remote: "{{dir_path}}/{{DTG}}"

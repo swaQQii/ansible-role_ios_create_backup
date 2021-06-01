@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  role_name: ios_create_backup
+  author: swaQQii
+  description: Ansible role to create a backup from running-config
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.9.6
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+  galaxy_tags:
+    - facts
+    - directory
+    - create
+    - system
+    - config
+    - backup
+    - cisco
+    - ios

@@ -1,0 +1,28 @@
+---
+- name: Get ansible date/time facts
+  setup:
+    filter: "ansible_date_time"
+    gather_subset: "!all"
+
+- name: Store "date" as fact
+  set_fact:
+    DTG: "{{ ansible_date_time.date }}"
+
+- name: Check if directory exists.
+  stat:
+    path: "{{path_localhost}}/{{DTG}}"
+  register: cnf_dir
+
+- name: Create directory {{DTG}}
+  file:
+    path: "{{path_localhost}}/{{DTG}}"
+    state: directory
+  when: cnf_dir.stat.exists == false
+  run_once: true
+
+- name: Get config from ios-device
+  cisco.ios.ios_config:
+    backup: yes
+    backup_options:
+      filename: ios_{{inventory_hostname}}_{{ansible_date_time.date}} 
+      dir_path: "{{path_remote}}"
